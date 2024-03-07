@@ -1,20 +1,20 @@
 apply plugin: 'kotlin-android'
 
-// 通用配置
+//General configuration
 android {
 
-    // 编译源码版本
+    //Compile source code version
     compileSdkVersion 30
     defaultConfig {
-        // 最低安装版本
+        // Minimum installation version
         minSdkVersion 21
-        // 目标适配版本
+        //Target adaptation version
         targetSdkVersion 30
         versionName '1.0'
         versionCode 10
     }
 
-    // 支持 Java JDK 8
+    //Support Java JDK 8
     compileOptions {
         targetCompatibility JavaVersion.VERSION_1_8
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -24,52 +24,51 @@ android {
         jvmTarget = '1.8'
     }
 
-    // 设置存放 so 文件的目录
+    //Set the directory where so files are stored
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
         }
     }
 
-    // 可在 Studio 最左侧中的 Build Variants 选项中切换默认的构建类型
+    // You can switch the default build type in the Build Variants option on the far left side of Studio
     buildTypes {
-        // 调试版本
+        //debug version
         debug {}
-        // 预览版本
+        // Preview version
         preview {}
-        // 正式版本
+        // official version
         release {}
     }
 
-    // 代码警告配置
+    // Code warning configuration
     lintOptions {
-        // 禁用文本硬编码警告
+        // Disable text hardcoded warnings
         disable 'HardcodedText'
-        // 禁用图片描述警告
+        // Disable image description warning
         disable 'ContentDescription'
     }
 }
 
 afterEvaluate {
-    // 前提条件是这个 Module 工程必须是 Library 类型，并且排除名为 umeng 的 Module 工程
+    // The prerequisite is that this Module project must be of Library type, and the Module project named umeng is excluded.
     if (android.defaultConfig.applicationId == null && "umeng" != getName()) {
-        // 排除 BuildConfig.class
+        //Exclude BuildConfig.class
         generateReleaseBuildConfig.enabled = false
         generatePreviewBuildConfig.enabled = false
         generateDebugBuildConfig.enabled = false
     }
 }
-
 dependencies {
-    // 依赖 libs 目录下所有的 jar 和 aar 包
+    // Depend on all jar and aar packages in the libs directory
     implementation fileTree(include: ['*.jar', '*.aar'], dir: 'libs')
 
-    // AndroidX 库：https://github.com/androidx/androidx
+    // AndroidX library: https://github.com/androidx/androidx
     implementation 'androidx.appcompat:appcompat:1.3.1'
-    // Material 库：https://github.com/material-components/material-components-android
+    // Material library: https://github.com/material-components/material-components-android
     implementation 'com.google.android.material:material:1.4.0'
 
-    // Kotlin 协程：https://github.com/Kotlin/kotlinx.coroutines
+    // Kotlin coroutines: https://github.com/Kotlin/kotlinx.coroutines
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.0'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0'
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'

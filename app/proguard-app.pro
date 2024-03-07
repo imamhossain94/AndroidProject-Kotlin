@@ -1,21 +1,21 @@
-# 忽略警告
+# Ignore warnings
 #-ignorewarning
 
-# 混淆保护自己项目的部分代码以及引用的第三方jar包
+# Obfuscate and protect part of the code of your own project and referenced third-party jar packages
 #-libraryjars libs/xxxxxxxxx.jar
 
-# 不混淆这个包下的类
+# Do not confuse classes under this package
 -keep class com.hjq.demo.http.api.** {
-    <fields>;
+     <fields>;
 }
 -keep class com.hjq.demo.http.response.** {
-    <fields>;
+     <fields>;
 }
 -keep class com.hjq.demo.http.model.** {
-    <fields>;
+     <fields>;
 }
 
-# 不混淆被 Log 注解的方法信息
+#Do not obfuscate the method information annotated by Log
 -keepclassmembernames class ** {
-    @com.hjq.demo.aop.Log <methods>;
+     @com.hjq.demo.aop.Log <methods>;
 }

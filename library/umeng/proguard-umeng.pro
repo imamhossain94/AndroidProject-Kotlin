@@ -1,5 +1,5 @@
-# 友盟相关 SDK
+# Umeng related SDK
 -keep class com.umeng.** {*;}
 
-# QQ 和 微信 SDK
+# QQ and WeChat SDK
 -keep class com.tencent.** {*;}

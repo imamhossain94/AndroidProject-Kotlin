@@ -1,4 +1,4 @@
-# 基于 sdk/tools/proguard/proguard-android-optimize.txt 修改
+# Modified based on sdk/tools/proguard/proguard-android-optimize.txt
 -optimizations !code/simplification/arithmetic,!code/simplification/cast,!field/*,!class/merging/*
 -optimizationpasses 5
 -allowaccessmodification
@@ -7,55 +7,55 @@
 -dontskipnonpubliclibraryclasses
 -verbose
 
-# 不要删除无用代码
+# Don't delete useless code
 -dontshrink
 
-# 不混淆泛型
+# Don’t obfuscate generics
 -keepattributes Signature
 
-# 不混淆注解类
+# Do not confuse annotation classes
 -keepattributes *Annotation*
 
-# 不混淆本地方法
+# Do not obfuscate local methods
 -keepclasseswithmembernames class * {
-    native <methods>;
+     native <methods>;
 }
 
-# 不混淆 Activity 在 XML 布局所设置的 onClick 属性值
+# Do not confuse the onClick attribute value set by Activity in XML layout
 -keepclassmembers class * extends android.app.Activity {
-   public void *(android.view.View);
+    public void *(android.view.View);
 }
 
-# 不混淆枚举类
+# Do not confuse enumeration classes
 -keepclassmembers enum * {
-    public static **[] values();
-    public static ** valueOf(java.lang.String);
+     public static **[] values();
+     public static ** valueOf(java.lang.String);
 }
 
-# 不混淆 Parcelable 子类
+# Do not confuse Parcelable subclasses
 -keepclassmembers class * implements android.os.Parcelable {
-  public static final android.os.Parcelable$Creator CREATOR;
+   public static final android.os.Parcelable$Creator CREATOR;
 }
 
-# 不混淆 Serializable 子类
+# Do not confuse Serializable subclasses
 -keepclassmembers class * implements java.io.Serializable {
-    static final long serialVersionUID;
-    private static final java.io.ObjectStreamField[] serialPersistentFields;
-    !static !transient <fields>;
-    !private <fields>;
-    !private <methods>;
-    private void writeObject(java.io.ObjectOutputStream);
-    private void readObject(java.io.ObjectInputStream);
-    java.lang.Object writeReplace();
-    java.lang.Object readResolve();
+     static final long serialVersionUID;
+     private static final java.io.ObjectStreamField[] serialPersistentFields;
+     !static !transient <fields>;
+     !private <fields>;
+     !private <methods>;
+     private void writeObject(java.io.ObjectOutputStream);
+     private void readObject(java.io.ObjectInputStream);
+     java.lang.Object writeReplace();
+     java.lang.Object readResolve();
 }
 
-# 不混淆 R 文件中的字段
+# Do not obfuscate fields in R files
 -keepclassmembers class **.R$* {
-    public static <fields>;
+     public static <fields>;
 }
 
-# 不混淆 WebView 设置的 JS 接口的方法名
+# Do not confuse the method name of the JS interface set by WebView
 -keepclassmembers class * {
-    @android.webkit.JavascriptInterface <methods>;
+     @android.webkit.JavascriptInterface <methods>;
 }

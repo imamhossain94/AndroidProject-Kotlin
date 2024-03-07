@@ -1,28 +1,28 @@
-// AndroidProject-Kotlin 版本：v13.1
-// 导入配置文件
+// AndroidProject-Kotlin version: v13.1
+//Import configuration file
 apply from : 'configs.gradle'
 
 buildscript {
 
-    // 导入通用的 Maven 库配置
+    //Import common Maven library configuration
     apply from : 'maven.gradle'
 
     repositories {
-        // 阿里云云效仓库（Gradle 插件）：https://maven.aliyun.com/mvn/guide
+        // Alibaba Cloud Cloud Effect Warehouse (Gradle plug-in): https://maven.aliyun.com/mvn/guide
         maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
         addCommonMaven(repositories)
     }
 
-    // Studio 插件推荐：https://github.com/getActivity/StudioPlugins
+    // Studio plug-in recommendation: https://github.com/getActivity/StudioPlugins
     dependencies {
-        // Gradle 插件版本说明：https://developer.android.google.cn/studio/releases/gradle-plugin.html#updating-plugin
+        // Gradle plug-in version description: https://developer.android.google.cn/studio/releases/gradle-plugin.html#updating-plugin
         // noinspection GradleDependency
         classpath 'com.android.tools.build:gradle:4.1.2'
-        // Kotlin 插件：https://plugins.jetbrains.com/plugin/6954-kotlin
+        // Kotlin plug-in: https://plugins.jetbrains.com/plugin/6954-kotlin
         // noinspection GradleDependency
-//        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31'
+        // classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31'
         classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.6.0'
-        // AOP 配置插件：https://github.com/HujiangTechnology/gradle_plugin_android_aspectjx
+        // AOP configuration plug-in: https://github.com/HujiangTechnology/gradle_plugin_android_aspectjx
         classpath 'com.hujiang.aspectjx:gradle-android-plugin-aspectjx:2.0.10'
     }
 }
@@ -30,17 +30,17 @@ buildscript {
 allprojects {
 
     repositories {
-        // 友盟远程仓库：https://info.umeng.com/detail?id=443&cateId=1
+        // Umeng remote warehouse: https://info.umeng.com/detail?id=443&cateId=1
         maven { url 'https://repo1.maven.org/maven2' }
         addCommonMaven(repositories)
     }
 
-    tasks.withType(JavaCompile) {
-        // 设置全局编码
+    tasks.withType(JavaCompile).configureEach {
+        //Set global encoding
         options.encoding = 'UTF-8'
     }
-    tasks.withType(Javadoc) {
-        // 设置文档编码
+    tasks.withType(Javadoc).configureEach {
+        //Set document encoding
         options {
             encoding 'UTF-8'
             charSet 'UTF-8'
@@ -48,10 +48,10 @@ allprojects {
         }
     }
 
-    // 将构建文件统一输出到项目根目录下的 build 文件夹
+    // Output the build files uniformly to the build folder in the project root directory
     setBuildDir(new File(rootDir, "build/${path.replaceAll(':', '/')}"))
 }
 
-task clean(type: Delete) {
+tasks.register('clean', Delete) {
     delete rootProject.buildDir
 }

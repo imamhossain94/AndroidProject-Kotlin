@@ -4,13 +4,13 @@ apply from : '../../common.gradle'
 android {
 
     defaultConfig {
-        // 模块混淆配置
+        //Module obfuscation configuration
         consumerProguardFiles 'proguard-base.pro'
     }
 
     sourceSets {
         main {
-            // res 资源目录配置
+            // res resource directory configuration
             res.srcDirs(
                     'src/main/res',
                     'src/main/res-sw',

@@ -2,6 +2,6 @@ apply plugin : 'com.android.library'
 apply from : '../../common.gradle'
 
 dependencies {
-    // 基础库（不包任何第三方框架）
+    //Basic library (does not include any third-party framework)
     implementation project(':library:base')
 }

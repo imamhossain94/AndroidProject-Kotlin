@@ -4,17 +4,17 @@ apply from : '../../common.gradle'
 android {
 
     defaultConfig {
-        // 模块混淆配置
+        //Module obfuscation configuration
         consumerProguardFiles 'proguard-umeng.pro'
 
-        // 构建配置字段
+        //Build configuration fields
         buildConfigField('String', 'UM_KEY', '\"' + UMENG_APP_KEY + '\"')
         buildConfigField('String', 'QQ_ID', '\"' + QQ_APP_ID + '\"')
         buildConfigField('String', 'QQ_SECRET', '\"' + QQ_APP_SECRET + '\"')
         buildConfigField('String', 'WX_ID', '\"' + WX_APP_ID + '\"')
         buildConfigField('String', 'WX_SECRET', '\"' + WX_APP_SECRET + '\"')
 
-        // 清单占位符
+        // List placeholder
         addManifestPlaceholders([
                 'UM_KEY' : UMENG_APP_KEY,
                 'QQ_ID' : QQ_APP_ID,
@@ -25,21 +25,21 @@ android {
     }
 }
 
-// 友盟统计集成文档：https://developer.umeng.com/docs/119267/detail/118584
-// 友盟社会化集成文档：https://developer.umeng.com/docs/128606/detail/193879
+// Umeng Statistics Integration Document: https://developer.umeng.com/docs/119267/detail/118584
+// Umeng social integration document: https://developer.umeng.com/docs/128606/detail/193879
 dependencies {
-    // 友盟公共库
+    // Umeng public library
     api 'com.umeng.umsdk:common:9.4.0'
     api 'com.umeng.umsdk:asms:1.2.3'
-    // 友盟分享库
+    // Umeng Sharing Library
     api 'com.umeng.umsdk:share-core:7.1.5'
-    // 友盟微信分享
+    // Umeng WeChat sharing
     api 'com.umeng.umsdk:share-wx:7.1.5'
-    // 友盟 QQ 分享
+    // Umeng QQ share
     api 'com.umeng.umsdk:share-qq:7.1.5'
 
-    // QQ 组件：https://wiki.open.qq.com/wiki/QQ%E7%94%A8%E6%88%B7%E8%83%BD%E5%8A%9B
+    // QQ component: https://wiki.open.qq.com/wiki/QQ%E7%94%A8%E6%88%B7%E8%83%BD%E5%8A%9B
     api 'com.tencent.tauth:qqopensdk:3.53.0'
-    // 微信组件：https://developers.weixin.qq.com/doc/oplatform/Mobile_App/Access_Guide/Android.html
+    // WeChat component: https://developers.weixin.qq.com/doc/oplatform/Mobile_App/Access_Guide/Android.html
     api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.7.9'
 }
